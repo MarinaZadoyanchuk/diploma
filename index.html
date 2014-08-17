@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kursach</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="style.css">
+<script src="jquery.js"></script>
+<script src="three.min.js"></script>
+<script src="draw-three.js"></script>
+<script src="func_js.js"></script>
+<script src="main.js"></script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+	<div class = "main_title">Екстраградієнтні методи</div>
+	<div class = "dimension">
+		<p>Введіть розмірність простору, в якому буде розглядатися задача:</p>
+		<span>\( n =  \)</span><input type = "text" id = "dimension_n" value = "2" onchange="edit_paralelepiped(this.value);">
+	</div>
+	<div class = "value_x0">
+		<p>Введіть координати початкового вектора  \( x_0 \): </p>
+		<span>\( x_{1} =  \)</span><input type = "text" id = "x0_x1" value = "">
+		<span>\( x_{2} =  \)</span><input type = "text" id = "x0_x2" value = "">
+	</div>
+	<div class = "eps">
+		<p>Введіть точність розрахунків поставленої задачі: </p>
+		<span>\( \varepsilon =  \)</span><input type = "text" id = "input_eps" value = "0.01">
+	</div>
+	<div class = "paralelepiped">
+		<p>Введіть довжини граней паралелепіпеда в просторі \( \mathbb{R}^2 \): </p>
+		<span>\( x_{1} =  \)</span><input type = "text" id = "paral_x1" value = "">
+		<span>\( x_{2} =  \)</span><input type = "text" id = "paral_x2" value = "">
+	</div>
+
+		<h2>Оператори:</h2>
+	<div class = "operators">
+		<input type = "button" value = "Додати оператор" onclick = "add_operator();return false;" class = "add_operator">
+	</div>	
+	<input type = "button" value = "Порахувати" onclick = "array_values();" class = "send_values">
+</body>
+</html>

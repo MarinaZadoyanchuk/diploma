@@ -1,0 +1,177 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	padding: 0;border: 0;
+	outline: 0;
+	font-size: 25px;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+.main_title
+{
+	font-size: 30px;
+	font-weight: bold;
+    font-style: italic;
+	color: #1F4ED6;
+    margin: 20px;
+}
+#dimension_n
+{
+	width: 50px;
+    margin-left: 5px;
+}
+#input_eps
+{
+    width: 50px;
+    margin-left: 5px;
+}
+.elem_operator
+{
+	width: 40px;
+}
+.name_table
+{
+	float: left;
+}
+.value_operator
+{
+	margin-right: 100px;
+}
+.popup_for_table {
+    position: absolute;
+    border-radius: 5px;
+    background: #fff;
+    display: none;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+    font-family: Arial, sans-serif;
+    z-index: 9999999;
+    font-size: 14px;
+}
+/*.popup_for_table .close {
+   position: absolute;
+   right: 10px;
+}*/
+.add_one_operator
+{
+	margin-right: 35px;
+}
+.popup_for_table .close:hover {
+    color: #000;
+}
+#blackout {
+    background: rgba(0,0,0,0.3);
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    z-index: 999999;
+    left: 0;
+    display: none;
+}
+.value_operator
+{
+	margin: 10px;
+    min-width: 150px;
+}
+.value_operator tr
+{
+	margin: 10px;
+}
+.paralelepiped input
+{
+    width: 50px;
+    margin-left: 5px;
+}
+
+.value_x0 input
+{
+   width: 50px;
+   margin-left: 5px; 
+}
+input{
+    z-index: 9999;
+}
+.result_metod_name
+{
+    color: #226D42;
+    font-weight: 24px;
+    font-weight: bold;
+}
+.operators
+{
+    margin: 15px 0 15px 0;
+}
+.add_operator, .send_values, input.add_one_operator, input.close{
+    background-image: -webkit-linear-gradient(top, #428bca 0%, #2d6ca2 100%);
+    background-image: linear-gradient(to bottom, #428bca 0%, #2d6ca2 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff2d6ca2', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    background-repeat: repeat-x;
+    border-color: #2b669a;
+    -webkit-appearance: button;
+    cursor: pointer;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+    color: #ffffff;
+    background-color: #428bca;
+    border-color: #357ebd;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 0;
+    -webkit-user-select: none;
+}
+.add_operator:hover, .send_values:hover, input.add_one_operator:hover, input.close:hover{
+    background-color: #2d6ca2;
+    background-position: 0 -15px;
+    color: #ffffff;
+    background-color: #3276b1;
+    border-color: #285e8e;
+    text-decoration: none;
+}
+input.add_one_operator, input.close{
+    background-image: -webkit-linear-gradient(top, #428bca 0%, #2d6ca2 100%);
+    background-image: linear-gradient(to bottom, #428bca 0%, #2d6ca2 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff2d6ca2', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    background-repeat: repeat-x;
+    border-color: #2b669a;
+    -webkit-appearance: button;
+    cursor: pointer;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+    color: #ffffff;
+    background-color: #428bca;
+    border-color: #357ebd;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 3px 8px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    border-radius: 0;
+    -webkit-user-select: none;
+}
