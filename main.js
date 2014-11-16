@@ -388,6 +388,78 @@ function Popov(a,x,c,eps)
 	var output = new double_print(x,i);
 	return output;
 }
+function Malickyj(a,x,c,eps, lambda_max)
+{
+	count = a.length;
+	draw = false;
+	if(x.n == 3)
+		draw = true;
+	for(i = 0; i< count; i++)
+	{
+		if(a[i].n != x.n)
+			return 'error';
+	}
+	var x0_main = new Vector(x.n);
+	var x0 = new Vector(x.n);
+	var y0 = new Vector(x.n);
+	var y = new Vector(x.n);
+	var lambda = 0;
+	var norm_a = 0;
+	var arr_lambda = [];
+	for (k=0; k<count; k++)
+	{
+		arr_lambda[k] = 1/(3*a[k].norma_matrix(eps));
+	}
+	norm_a = a[0].norma_matrix(eps);
+	for (t=1; t<count; t++)
+	{
+		new_norma_matrix = a[t].norma_matrix(eps);
+		if(new_norma_matrix>norm_a)
+		{
+			norm_a = new_norma_matrix;
+		}
+	}
+	var i = 0;
+	lambda = 1/(3*norm_a);
+	if(draw)
+		draw_point_start(x.v[0],x.v[1],x.v[2],0x000000);
+	while(x.modul(y)>eps)
+	{
+		x0_main.assign(x);
+		for(j=0; j<count; j++)
+		{
+			if(!lambda_max)
+				lambda = arr_lambda[j];
+			x0.assign(x);
+			y0.assign(y);
+			x = y0.mult_by_matrix(a[j]);
+			x = x.mult_by_scalar(lambda);
+			x.assign(proection(x0.substr(x),c));
+			y = x.mult_by_scalar(2);
+			y.assign(y.substr(x0));
+			if(draw)
+			{
+				if(i<30)
+				{
+					draw_point(x.v[0],x.v[1],x.v[2],0xff0000);
+					draw_line(x0.v[0],x0.v[1],x0.v[2],x.v[0],x.v[1],x.v[2],0x0bda51);
+				}
+				else if(i%50 == 0)
+				{
+					draw_point(x.v[0],x.v[1],x.v[2],0xff0000);
+					draw_line(x0.v[0],x0.v[1],x0.v[2],x.v[0],x.v[1],x.v[2],0x0bda51);
+				}
+			}
+		}
+		i++;
+	}
+	if(draw)
+		draw_cube(c);
+	console.log(x);
+	var output = new double_print(x,i);
+	return output;
+
+}
 function Popov_system(a,x,c,eps,lambda_max)
 {
 	count = a.length;
@@ -440,13 +512,13 @@ function Popov_system(a,x,c,eps,lambda_max)
 			{
 				if(i<30)
 				{
-					draw_point(x.v[0],x.v[1],x.v[2],0xff0000);
-					draw_line(x0.v[0],x0.v[1],x0.v[2],x.v[0],x.v[1],x.v[2],0x0bda51);
+					draw_point(x.v[0],x.v[1],x.v[2],0x00CED1);
+					draw_line(x0.v[0],x0.v[1],x0.v[2],x.v[0],x.v[1],x.v[2],0x00CED1);
 				}
 				else if(i%50 == 0)
 				{
-					draw_point(x.v[0],x.v[1],x.v[2],0xff0000);
-					draw_line(x0.v[0],x0.v[1],x0.v[2],x.v[0],x.v[1],x.v[2],0x0bda51);
+					draw_point(x.v[0],x.v[1],x.v[2],0x00CED1);
+					draw_line(x0.v[0],x0.v[1],x0.v[2],x.v[0],x.v[1],x.v[2],0x00CED1);
 				}
 			}
 		}
@@ -612,21 +684,6 @@ function Popov_system_modification(a,x,c,eps)
 			x = y.mult_by_matrix(a[j]);
 			x = x.mult_by_scalar(lambda);
 			x = proection(x0.substr(x),c);
-			
-			// arr_result[j] = x.v;
-			// if(draw)
-			// {
-			// 	if(i<30)
-			// 	{
-			// 		draw_point(x.v[0],x.v[1],x.v[2],0xff0000);
-			// 		draw_line(x0.v[0],x0.v[1],x0.v[2],x.v[0],x.v[1],x.v[2],0x0047ab);
-			// 	}
-			// 	else if(i%50 == 0)
-			// 	{
-			// 		draw_point(x.v[0],x.v[1],x.v[2],0xff0000);
-			// 		draw_line(x0.v[0],x0.v[1],x0.v[2],x.v[0],x.v[1],x.v[2],0x0047ab);
-			// 	}
-			// }
 		}
 
 		if(draw)
@@ -642,24 +699,10 @@ function Popov_system_modification(a,x,c,eps)
 				draw_line(x0.v[0],x0.v[1],x0.v[2],x.v[0],x.v[1],x.v[2],0x0047ab);
 			}
 		}
-		// x = middle_value_vector(arr_result);
-		// if(i<30)
-		// {
-		// 	arr_points.push(x.v);
-		// }
-		// else if(i%50 == 0)
-		// {
-		// 	arr_points.push(x.v);
-		// }
 		i++;
 	}
 	if(draw)
 	{
-		// for(p = 1; p<arr_points.length; p++)
-		// {	
-		// 	draw_point(arr_points[p][0],arr_points[p][1],arr_points[p][2],0x000000);
-		// 	draw_line(arr_points[p-1][0],arr_points[p-1][1],arr_points[p-1][2],arr_points[p][0],arr_points[p][1],arr_points[p][2],0x0047ab);
-		// }
 		draw_cube(c);
 	}
 	var output = new double_print(x,i);
@@ -703,37 +746,6 @@ function modification_extra_gradient(a,u,c,eps)
 	var output = new double_print(u,i);
 	return output;
 }
-//POMYLKA!!!!!!!!!!!!!!!!!!!
-// function extra_gradient(a,z,c,eps)
-// {
-// 	var z0 = new Vector(z.n);
-// 	var z1 = new Vector(z.n);
-// 	var z2 = new Vector(z.n);
-// 	var lambda = 0;
-// 	var i = 0;
-// 	var norm_a = 0;
-// 	norm_a = a.norma_matrix(eps);
-// 	lambda = 1/(8*norm_a);
-// 	while(i<10)
-// 	{
-// 		z0.assign(z);
-// 		z1 = z0.mult_by_matrix(a);
-// 		z1 = z1.mult_by_scalar(lambda);
-// 		z1 = proection(z0.substr(z1),c);
-// 		z2 = z1.mult_by_matrix(a);
-// 		z2 = z2.mult_by_scalar(lambda);
-// 		z2 = proection(z1.substr(z2),c);
-// 		z = z2.mult_by_matrix(a);
-// 		z = z.mult_by_scalar(lambda);
-// 		z = proection(z0.substr(z),c);
-// 		draw_point(z.v[0],z.v[1],z.v[2],0x000000);
-// 		draw_line(z0.v[0],z0.v[1],z0.v[2],z.v[0],z.v[1],z.v[2],0x0bda51);
-// 		i++;
-// 	}
-// 	draw_cube(c);
-// 	var output = new double_print(z,i);
-// 	return output;
-// }
 
 
 a = new Matrix()

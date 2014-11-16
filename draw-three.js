@@ -26,13 +26,19 @@ function onload_result(value)
     p_s_max = Popov_system(value.all_operator,x,c,eps,true);
     p_s_middle_max = Popov_system_middle_value(value.all_operator,x,c,eps, true);
     p_s_mod = Popov_system_modification(value.all_operator,x,c,eps);
+    mal_s = Malickyj(value.all_operator, x,c,eps, false);
+    mal_s_max = Malickyj(value.all_operator, x,c,eps, true);
+    console.log(mal_s.b);
+
     x_s = p_s.a.v;
     x_s_mid = p_s_middle.a.v;
     x_s_max = p_s_max.a.v;
     x_s_mid_max = p_s_middle_max.a.v;
     x_s_mod = p_s_mod.a.v;
+    x_mal = mal_s.a.v;
+    x_mal_max = mal_s_max.a.v;
 
-    result = "<div class = 'result'>";
+    result = "<div class = 'result'> Результати:<br><br>";
     result += "<span class = 'result_metod_name'>Метод Попова(різні \\(\\lambda_{i}\\)):</span><br>";
     result += "Кількість ітерацій: " + p_s.b + "<br>";
     result += "Розв'язок: \\(x^{*} = (";
@@ -91,6 +97,32 @@ function onload_result(value)
             result += x_s_mod[i] + ',';
         else
              result += x_s_mod[i];
+    }
+
+    result += ")\\)<br><br>";
+
+    result += "<span class = 'result_metod_name'>Метод Маліцького (різні \\(\\lambda_{i}\\)):</span><br>";
+    result += "Кількість ітерацій: " + mal_s.b + "<br>";
+    result += "Розв'язок: \\(x^{*} = (";
+    for(i=0; i<x_mal.length; i++)
+    {
+        if(i !== x_mal.length - 1)
+            result += x_mal[i] + ',';
+        else
+             result += x_mal[i];
+    }
+
+    result += ")\\)<br><br>";
+
+    result += "<span class = 'result_metod_name'>Метод Маліцького (\\(\\lambda_{max}\\)):</span><br>";
+    result += "Кількість ітерацій: " + mal_s_max.b + "<br>";
+    result += "Розв'язок: \\(x^{*} = (";
+    for(i=0; i<x_mal_max.length; i++)
+    {
+        if(i !== x_mal_max.length - 1)
+            result += x_mal_max[i] + ',';
+        else
+             result += x_mal_max[i];
     }
 
     result += ")\\)<br><br>";
